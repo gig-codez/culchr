@@ -14,69 +14,169 @@ class _IntroState extends State<Intro> {
     var swipes = [
       {
         'heading': "Exclusive Accses to every event",
+        'image': 'images/events.jpg',
         'content':
             'Be the first to know of your favourite event and get exclusive access to it.'
       },
       {
         'heading': 'Discover experieces  around you',
-        'context':
+        'image': 'images/experience.jpg',
+        'content':
             'Discover and travel to all the exihilarating experiences around you. ',
       },
       {
-        'heading': '',
-        'context': '',
+        'heading': 'The party doesn’t stop with Nightlife',
+        'image': 'images/nightlife.jpg',
+        'content':
+            'Discover and travel to all the exihilarating experiences around you. ',
       },
       {
-        'heading': '',
-        'context': '',
+        'heading': 'Seamless Entry With  CulchrPass',
+        'image': 'images/culchrwallet.jpg',
+        'content':
+            'Updated catalog of concerts, live perfomances taking place in your locality.',
+      },
+      {
+        'heading': 'Cashless pay with our CulchrWallet',
+        'image': 'images/culchrpass.jpg',
+        'content':
+            'Updated catalog of concerts, live perfomances taking place in your locality.'
       }
     ];
     return Scaffold(
-        body: Center(
-      child: CarouselSlider(
-        options: CarouselOptions(
-          height: MediaQuery.of(context).size.height,
+      backgroundColor: Colors.transparent,
+      body: Stack(
+        children: [
+          CarouselSlider(
+            options: CarouselOptions(
+              viewportFraction: 1,
+              height: MediaQuery.of(context).size.height,
+              aspectRatio: 1,
+              initialPage: 0,
+              // enableInfiniteScroll: true,
+              // reverse: false,
+              autoPlay: true,
+              autoPlayInterval: const Duration(seconds: 15),
+              autoPlayAnimationDuration: const Duration(milliseconds: 880),
+              autoPlayCurve: Curves.decelerate,
 
-          initialPage: 0,
-          enableInfiniteScroll: true,
-          reverse: false,
-          autoPlay: true,
-          autoPlayInterval: const Duration(seconds: 15),
-          autoPlayAnimationDuration: const Duration(milliseconds: 880),
-          autoPlayCurve: Curves.decelerate,
-
-          // onPageChanged: callbackFunction,
-          scrollDirection: Axis.horizontal,
-        ),
-        items: swipes.map((i) {
-          return Builder(
-            builder: (BuildContext context) {
-              return Center(
-                child: Container(
-                  width: MediaQuery.of(context).size.width,
-                  height: MediaQuery.of(context).size.height,
-                  decoration: const BoxDecoration(
-                    gradient: LinearGradient(
-                      begin: Alignment.bottomCenter,
-                      end: Alignment.topCenter,
-                      colors: [
-                        Colors.black,
-                        Colors.white24,
-                      ],
+              // onPageChanged: callbackFunction,
+              scrollDirection: Axis.horizontal,
+            ),
+            items: List.generate(swipes.length, (index) {
+              return Builder(
+                builder: (BuildContext context) {
+                  return Container(
+                    padding: EdgeInsets.zero,
+                    width: MediaQuery.of(context).size.width,
+                    height: MediaQuery.of(context).size.height,
+                    decoration: BoxDecoration(
+                      image: DecorationImage(
+                          fit: BoxFit.cover,
+                          image: AssetImage("${swipes[index]['image']}")),
+                    ),
+                    child: Container(
+                      padding: EdgeInsets.zero,
+                      width: MediaQuery.of(context).size.width,
+                      decoration: const BoxDecoration(
+                        gradient: LinearGradient(
+                          begin: Alignment.bottomCenter,
+                          end: Alignment.topCenter,
+                          colors: [
+                            Colors.black,
+                            Colors.black54,
+                            Colors.transparent
+                          ],
+                        ),
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.all(10),
+                        child: Column(
+                          children: [
+                            SizedBox(
+                              height: MediaQuery.of(context).size.height * 0.4,
+                            ),
+                            Text("${swipes[index]['heading']}",
+                                style: const TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 19,
+                                  fontWeight: FontWeight.w800,
+                                ),
+                                textAlign: TextAlign.left,
+                                textScaleFactor: 2.6),
+                            SizedBox(
+                              height: MediaQuery.of(context).size.height * 0.01,
+                            ),
+                            Text(
+                              "${swipes[index]['content']}",
+                              style: const TextStyle(
+                                fontSize: 19,
+                                color: Colors.white,
+                                fontWeight: FontWeight.w400,
+                              ),
+                              textAlign: TextAlign.left,
+                            ),
+                            SizedBox(
+                              height: MediaQuery.of(context).size.height * 0.07,
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  );
+                },
+              );
+            }),
+          ),
+          Positioned(
+            bottom: MediaQuery.of(context).size.width * 0.2,
+            left: MediaQuery.of(context).size.width * 0.26,
+            child: Column(
+              children: [
+                ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    primary: Colors.white,
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 30,
+                      vertical: 13,
                     ),
                   ),
-                  child: Center(
-                      child: Column(
-                    children: [
-                      // Text(),
-                    ],
-                  )),
+                  onPressed: () {},
+                  child: Text(
+                    "Create account",
+                    style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                          fontSize: 19,
+                        ),
+                  ),
                 ),
-              );
-            },
-          );
-        }).toList(),
+                SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.01,
+                ),
+                SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.01,
+                ),
+                TextButton(
+                  // style: ElevatedButton.styleFrom(
+                  //   primary: Colors.white,
+                  //   padding: const EdgeInsets.symmetric(
+                  //     horizontal: 60,
+                  //     vertical: 13,
+                  //   ),
+                  // ),
+                  onPressed: () {},
+                  child: Text(
+                    "or Sign Up",
+                    style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                          fontSize: 19,
+                          color: Colors.white,
+                        ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
       ),
-    ));
+    );
   }
 }
