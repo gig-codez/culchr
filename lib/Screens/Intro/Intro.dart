@@ -131,7 +131,7 @@ class _IntroState extends State<Intro> {
             }),
           ),
           Positioned(
-            bottom: MediaQuery.of(context).size.width * 0.2,
+            bottom: MediaQuery.of(context).size.width * 0.08,
             left: MediaQuery.of(context).size.width * 0.26,
             child: Column(
               children: [
