@@ -43,7 +43,12 @@ class _ForgotState extends State<Forgot> {
                   hintText: "Enter your email",
                   controller: emailController,
                 ),
-                RoundedButton(text: "Submit", press: () {}, color: Colors.black)
+                RoundedButton(
+                    text: "Submit",
+                    press: () {
+                      Navigator.of(context).pushNamed('/new password');
+                    },
+                    color: Colors.black)
               ],
             ),
           ),

@@ -1,5 +1,8 @@
 import 'package:culchr/Screens/Forgot/Forgot.dart';
+import 'package:culchr/Screens/Forgot/new_password.dart';
 import 'package:culchr/Screens/Intro/Intro.dart';
+import 'package:culchr/Screens/SignUp/verify.dart';
+import 'package:culchr/Screens/login/login.dart';
 import 'package:flutter/material.dart';
 
 import 'Screens/SignUp/Register.dart';
@@ -23,7 +26,11 @@ class MyApp extends StatelessWidget {
       routes: {
         '/': (context) => const Intro(),
         '/register': (context) => Register(),
-        '/forgot': ((context) => Forgot())
+        '/forgot': (context) => Forgot(),
+        '/login':(context) => Login(),
+        '/verify':(context) => Verify(),
+        '/new password':(context) => NewPassword(),
+        
       },
     );
   }

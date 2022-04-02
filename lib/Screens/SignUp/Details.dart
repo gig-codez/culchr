@@ -61,7 +61,9 @@ class _DetailsState extends State<Details> {
             ),
             RoundedButton(
               text: "Register",
-              press: () {},
+              press: () {
+                Navigator.of(context).pushNamed('/verify');
+              },
               color: Colors.black,
             ),
           ],
