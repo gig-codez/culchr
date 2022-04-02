@@ -2,7 +2,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 
 class Intro extends StatefulWidget {
-  Intro({Key? key}) : super(key: key);
+  const Intro({Key? key}) : super(key: key);
 
   @override
   State<Intro> createState() => _IntroState();
@@ -13,7 +13,7 @@ class _IntroState extends State<Intro> {
   Widget build(BuildContext context) {
     var swipes = [
       {
-        'heading': "Exclusive Accses to every event",
+        'heading': "Exclusive Access to every event",
         'image': 'images/events.jpg',
         'content':
             'Be the first to know of your favourite event and get exclusive access to it.'
@@ -31,7 +31,7 @@ class _IntroState extends State<Intro> {
             'Discover and travel to all the exihilarating experiences around you. ',
       },
       {
-        'heading': 'Seamless Entry With  CulchrPass',
+        'heading': 'Seamless Entry With CulchrPass',
         'image': 'images/culchrwallet.jpg',
         'content':
             'Updated catalog of concerts, live perfomances taking place in your locality.',
@@ -51,14 +51,14 @@ class _IntroState extends State<Intro> {
             options: CarouselOptions(
               viewportFraction: 1,
               height: MediaQuery.of(context).size.height,
-              aspectRatio: 1,
+              // aspectRatio: ,
               initialPage: 0,
-              // enableInfiniteScroll: true,
-              // reverse: false,
+              enableInfiniteScroll: true,
+              reverse: false,
               autoPlay: true,
-              autoPlayInterval: const Duration(seconds: 15),
-              autoPlayAnimationDuration: const Duration(milliseconds: 880),
-              autoPlayCurve: Curves.decelerate,
+              autoPlayInterval: const Duration(seconds: 19),
+              autoPlayAnimationDuration: const Duration(milliseconds: 180),
+              autoPlayCurve: Curves.linearToEaseOut,
 
               // onPageChanged: callbackFunction,
               scrollDirection: Axis.horizontal,
@@ -84,7 +84,7 @@ class _IntroState extends State<Intro> {
                           end: Alignment.topCenter,
                           colors: [
                             Colors.black,
-                            Colors.black54,
+                            Colors.black87,
                             Colors.transparent
                           ],
                         ),
@@ -94,16 +94,18 @@ class _IntroState extends State<Intro> {
                         child: Column(
                           children: [
                             SizedBox(
-                              height: MediaQuery.of(context).size.height * 0.4,
+                              height: MediaQuery.of(context).size.height * 0.5,
                             ),
-                            Text("${swipes[index]['heading']}",
-                                style: const TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 19,
-                                  fontWeight: FontWeight.w800,
-                                ),
-                                textAlign: TextAlign.left,
-                                textScaleFactor: 2.6),
+                            Text(
+                              "${swipes[index]['heading']}",
+                              style: const TextStyle(
+                                color: Colors.white,
+                                fontSize: 19,
+                                fontWeight: FontWeight.w800,
+                              ),
+                              textAlign: TextAlign.left,
+                              textScaleFactor: 2.3,
+                            ),
                             SizedBox(
                               height: MediaQuery.of(context).size.height * 0.01,
                             ),
@@ -133,20 +135,23 @@ class _IntroState extends State<Intro> {
             left: MediaQuery.of(context).size.width * 0.26,
             child: Column(
               children: [
-                ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    primary: Colors.white,
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 30,
-                      vertical: 13,
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(50),
+                  child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      primary: Colors.white,
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 30,
+                        vertical: 13,
+                      ),
                     ),
-                  ),
-                  onPressed: () {},
-                  child: Text(
-                    "Create account",
-                    style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                          fontSize: 19,
-                        ),
+                    onPressed: () {},
+                    child: Text(
+                      "Create account",
+                      style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                            fontSize: 19,
+                          ),
+                    ),
                   ),
                 ),
                 SizedBox(
@@ -156,14 +161,15 @@ class _IntroState extends State<Intro> {
                   height: MediaQuery.of(context).size.height * 0.01,
                 ),
                 TextButton(
-                  // style: ElevatedButton.styleFrom(
-                  //   primary: Colors.white,
-                  //   padding: const EdgeInsets.symmetric(
-                  //     horizontal: 60,
-                  //     vertical: 13,
-                  //   ),
-                  // ),
-                  onPressed: () {},
+                  style: ElevatedButton.styleFrom(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 60,
+                      vertical: 13,
+                    ),
+                  ),
+                  onPressed: () {
+                    Navigator.of(context).pushNamed('/register');
+                  },
                   child: Text(
                     "or Sign Up",
                     style: Theme.of(context).textTheme.bodyMedium!.copyWith(

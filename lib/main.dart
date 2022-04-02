@@ -1,6 +1,8 @@
 import 'package:culchr/Screens/Intro/Intro.dart';
 import 'package:flutter/material.dart';
 
+import 'Screens/SignUp/Register.dart';
+
 void main() {
   runApp(const MyApp());
 }
@@ -18,7 +20,8 @@ class MyApp extends StatelessWidget {
       ),
       initialRoute: '/',
       routes: {
-        '/': (context) => Intro(),
+        '/': (context) => const Intro(),
+        '/register': (context) => Register()
       },
     );
   }

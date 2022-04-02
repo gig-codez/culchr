@@ -28,17 +28,17 @@ class RoundedPasswordFieldState extends State<RoundedPasswordField> {
         obscureText: passHide ? true : false,
         validator: ((value) =>
             value!.isNotEmpty ? null : "This field is required"),
-        cursorColor: Colors.deepPurple[400],
+        cursorColor: Colors.black,
         textInputAction: TextInputAction.next,
         decoration: InputDecoration(
           hintText: widget.hintText,
           icon: Icon(
             Icons.lock,
-            color: Colors.deepPurple[400],
+            color: Colors.black,
           ),
           suffixIcon: IconButton(
             /**Icons.visibility */
-            color: Colors.deepPurple[400],
+            color: Colors.black,
             icon: Icon(
                 passHide ? Icons.visibility : Icons.visibility_off_rounded),
             onPressed: () {
