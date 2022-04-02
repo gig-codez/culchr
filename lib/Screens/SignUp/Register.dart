@@ -1,6 +1,8 @@
 import 'package:culchr/Models/Tools/rounded_button.dart';
 import 'package:culchr/Models/Tools/rounded_input_field.dart';
 import 'package:culchr/Models/Tools/rounded_password_field.dart';
+import 'package:culchr/Models/Tools/social_icon.dart';
+import 'package:culchr/Screens/SignUp/Details.dart';
 import 'package:flutter/material.dart';
 
 class Register extends StatefulWidget {
@@ -25,7 +27,7 @@ class _RegisterState extends State<Register> {
               child: ListView(
                 children: [
                   SizedBox(
-                    height: MediaQuery.of(context).size.height * 0.04,
+                    height: MediaQuery.of(context).size.height * 0.02,
                   ),
                   Padding(
                     padding: const EdgeInsets.all(10.0),
@@ -85,25 +87,84 @@ class _RegisterState extends State<Register> {
                                 color: Colors.black38,
                               ),
                             ),
-                            const Text("Remember me"),
+                            const Text(
+                              "Remember me",
+                              style: TextStyle(
+                                fontSize: 17,
+                              ),
+                            ),
                           ],
                         ),
                         TextButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.of(context).pushNamed('/forgot');
+                          },
                           child: const Text(
                             "Forgot password",
                             style: TextStyle(
-                              color: Colors.black54,
-                            ),
+                                // color: Color.fromARGB(255, 6, 71, 124),
+                                fontSize: 17),
                           ),
                         )
                       ],
                     ),
                   ),
-                  RoundedButton(
-                    text: "Register",
-                    press: () {},
-                    color: scrol == true ? Colors.black : Colors.black54,
+                  Padding(
+                    padding: const EdgeInsets.all(18.0),
+                    child: RoundedButton(
+                      text: "Continue",
+                      press: () {
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (context) => Details(),
+                          ),
+                        );
+                      },
+                      color: scrol == true ? Colors.black : Colors.black54,
+                    ),
+                  ),
+                  SizedBox(
+                    height: MediaQuery.of(context).size.height * 0.02,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      SocalIcon(
+                        iconColor: Colors.black38,
+                        iconSrc: 'images/apple.svg',
+                        press: () {},
+                      ),
+                      SocalIcon(
+                        iconColor: Colors.black38,
+                        iconSrc: 'images/google.svg',
+                        press: () {},
+                      ),
+                    ],
+                  ),
+                  SizedBox(
+                    height: MediaQuery.of(context).size.height * 0.02,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const Text(
+                        "Already have an account",
+                        style: TextStyle(
+                          fontSize: 17,
+                        ),
+                      ),
+                      TextButton(
+                        onPressed: () {
+                          Navigator.of(context).pushNamed('/login');
+                        },
+                        child: const Text(
+                          "Login",
+                          style: TextStyle(
+                            fontSize: 17,
+                          ),
+                        ),
+                      )
+                    ],
                   )
                 ],
               ),

@@ -1,3 +1,4 @@
+import 'package:culchr/Screens/Forgot/Forgot.dart';
 import 'package:culchr/Screens/Intro/Intro.dart';
 import 'package:flutter/material.dart';
 
@@ -21,7 +22,8 @@ class MyApp extends StatelessWidget {
       initialRoute: '/',
       routes: {
         '/': (context) => const Intro(),
-        '/register': (context) => Register()
+        '/register': (context) => Register(),
+        '/forgot': ((context) => Forgot())
       },
     );
   }
