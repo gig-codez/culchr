@@ -3,7 +3,7 @@ import 'package:culchr/Models/Tools/rounded_input_field.dart';
 import 'package:flutter/material.dart';
 
 class NewPassword extends StatefulWidget {
-  NewPassword({Key? key}) : super(key: key);
+  const NewPassword({Key? key}) : super(key: key);
 
   @override
   State<NewPassword> createState() => _NewPasswordState();

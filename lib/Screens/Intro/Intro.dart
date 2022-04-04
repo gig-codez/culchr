@@ -43,11 +43,14 @@ class _IntroState extends State<Intro> {
             'Updated catalog of concerts, live perfomances taking place in your locality.'
       }
     ];
+    int _current = 0;
+    var _controller = CarouselController();
     return Scaffold(
       backgroundColor: Colors.transparent,
       body: Stack(
         children: [
           CarouselSlider(
+            carouselController: _controller,
             options: CarouselOptions(
               viewportFraction: 1,
               height: MediaQuery.of(context).size.height,
@@ -57,10 +60,15 @@ class _IntroState extends State<Intro> {
               reverse: false,
               autoPlay: true,
               autoPlayInterval: const Duration(seconds: 19),
-              autoPlayAnimationDuration: const Duration(milliseconds: 180),
-              autoPlayCurve: Curves.linearToEaseOut,
+              autoPlayAnimationDuration: const Duration(milliseconds: 10),
+              autoPlayCurve: Curves.decelerate,
 
-              // onPageChanged: callbackFunction,
+              onPageChanged: (index, _) {
+                setState(() {
+                  _current = index;
+                  print(index);
+                });
+              },
               scrollDirection: Axis.horizontal,
             ),
             items: List.generate(swipes.length, (index) {
@@ -84,7 +92,8 @@ class _IntroState extends State<Intro> {
                           end: Alignment.topCenter,
                           colors: [
                             Colors.black,
-                            Colors.black87,
+                            Colors.black54,
+                            Colors.black26,
                             Colors.transparent
                           ],
                         ),
@@ -94,7 +103,7 @@ class _IntroState extends State<Intro> {
                         child: Column(
                           children: [
                             SizedBox(
-                              height: MediaQuery.of(context).size.height * 0.5,
+                              height: MediaQuery.of(context).size.height * 0.3,
                             ),
                             Text(
                               "${swipes[index]['heading']}",
@@ -104,7 +113,7 @@ class _IntroState extends State<Intro> {
                                 fontWeight: FontWeight.w800,
                               ),
                               textAlign: TextAlign.left,
-                              textScaleFactor: 2.3,
+                              textScaleFactor: 2.1,
                             ),
                             SizedBox(
                               height: MediaQuery.of(context).size.height * 0.01,
@@ -112,7 +121,7 @@ class _IntroState extends State<Intro> {
                             Text(
                               "${swipes[index]['content']}",
                               style: const TextStyle(
-                                fontSize: 19,
+                                fontSize: 15,
                                 color: Colors.white,
                                 fontWeight: FontWeight.w400,
                               ),
@@ -131,10 +140,34 @@ class _IntroState extends State<Intro> {
             }),
           ),
           Positioned(
-            bottom: MediaQuery.of(context).size.width * 0.08,
-            left: MediaQuery.of(context).size.width * 0.26,
+            bottom: MediaQuery.of(context).size.width * 0.03,
+            left: MediaQuery.of(context).size.width * 0.22,
             child: Column(
               children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: List.generate(swipes.length, (index) {
+                    return GestureDetector(
+                      onTap: () => _controller.animateToPage(index),
+                      child: Container(
+                        width: 12.0,
+                        height: 12.0,
+                        margin: const EdgeInsets.symmetric(
+                            vertical: 8.0, horizontal: 4.0),
+                        decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            color: (Theme.of(context).brightness ==
+                                        Brightness.light
+                                    ? Colors.white
+                                    : Colors.black)
+                                .withOpacity(_current == index ? 0.9 : 0.4)),
+                      ),
+                    );
+                  }),
+                ),
+                SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.03,
+                ),
                 ClipRRect(
                   borderRadius: BorderRadius.circular(50),
                   child: ElevatedButton(
@@ -145,7 +178,9 @@ class _IntroState extends State<Intro> {
                         vertical: 13,
                       ),
                     ),
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.of(context).pushNamed('/register');
+                    },
                     child: Text(
                       "Create account",
                       style: Theme.of(context).textTheme.bodyMedium!.copyWith(
@@ -168,10 +203,10 @@ class _IntroState extends State<Intro> {
                     ),
                   ),
                   onPressed: () {
-                    Navigator.of(context).pushNamed('/register');
+                    Navigator.of(context).pushNamed('/login');
                   },
                   child: Text(
-                    "or Sign Up",
+                    "or Sign In",
                     style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                           fontSize: 19,
                           color: Colors.white,

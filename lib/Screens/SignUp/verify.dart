@@ -14,7 +14,7 @@ class _VerifyState extends State<Verify> {
   final TextEditingController _pinPutController = TextEditingController();
   final FocusNode _pinPutFocusNode = FocusNode();
 
-  bool _isLoading = false;
+  final bool _isLoading = false;
   late String verifypin;
 
   BoxDecoration get _pinPutDecoration {

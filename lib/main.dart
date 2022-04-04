@@ -5,7 +5,9 @@ import 'package:culchr/Screens/SignUp/verify.dart';
 import 'package:culchr/Screens/login/login.dart';
 import 'package:flutter/material.dart';
 
+import 'Screens/Home/Home.dart';
 import 'Screens/SignUp/Register.dart';
+import 'Screens/interests/Interest.dart';
 
 void main() {
   runApp(const MyApp());
@@ -27,10 +29,11 @@ class MyApp extends StatelessWidget {
         '/': (context) => const Intro(),
         '/register': (context) => Register(),
         '/forgot': (context) => Forgot(),
-        '/login':(context) => Login(),
-        '/verify':(context) => Verify(),
-        '/new password':(context) => NewPassword(),
-        
+        '/login': (context) => Login(),
+        '/verify': (context) => Verify(),
+        '/new password': (context) => NewPassword(),
+        '/interest': (context) => const Interest(),
+        '/home': (context) => const Home(),
       },
     );
   }

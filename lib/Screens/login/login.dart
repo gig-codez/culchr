@@ -5,7 +5,7 @@ import 'package:culchr/Models/Tools/social_icon.dart';
 import 'package:flutter/material.dart';
 
 class Login extends StatefulWidget {
-  Login({Key? key}) : super(key: key);
+  const Login({Key? key}) : super(key: key);
 
   @override
   State<Login> createState() => _LoginState();
@@ -89,9 +89,7 @@ class _LoginState extends State<Login> {
                           },
                           child: const Text(
                             "Forgot password",
-                            style: TextStyle(
-                                color: Color.fromARGB(255, 247, 26, 10),
-                                fontSize: 17),
+                            style: TextStyle(fontSize: 17),
                           ),
                         )
                       ],
@@ -100,8 +98,10 @@ class _LoginState extends State<Login> {
                   Padding(
                     padding: const EdgeInsets.all(18.0),
                     child: RoundedButton(
-                      text: "Continue",
-                      press: () {},
+                      text: "Login",
+                      press: () {
+                        Navigator.of(context).pushNamed('/home');
+                      },
                       color: scrol == true ? Colors.black : Colors.black54,
                     ),
                   ),
@@ -130,7 +130,7 @@ class _LoginState extends State<Login> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       const Text(
-                        "Already have an account",
+                        "Don't  have an account",
                         style: TextStyle(
                           fontSize: 17,
                         ),

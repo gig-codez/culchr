@@ -16,11 +16,13 @@ class _RegisterState extends State<Register> {
   bool scrol = false;
   TextEditingController usernameController = TextEditingController();
   TextEditingController emailController = TextEditingController();
+  var formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
         child: Form(
+          key: formKey,
           child: Center(
             child: Padding(
               padding: const EdgeInsets.all(8.0),
@@ -33,6 +35,7 @@ class _RegisterState extends State<Register> {
                     padding: const EdgeInsets.all(10.0),
                     child: Text(
                       "Create account",
+                      textScaleFactor: 1.2,
                       textAlign: TextAlign.left,
                       style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                             fontSize: 26,
@@ -63,10 +66,13 @@ class _RegisterState extends State<Register> {
                       hintText: 'Enter lastname',
                     ),
                   ),
-                  RoundedInputField(
-                    hintText: "Enter your email",
-                    controller: emailController,
-                    icon: Icons.mail,
+                  Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: RoundedInputField(
+                      hintText: "Enter your email",
+                      controller: emailController,
+                      icon: Icons.mail,
+                    ),
                   ),
                   Padding(
                     padding: const EdgeInsets.all(10.0),
@@ -74,6 +80,7 @@ class _RegisterState extends State<Register> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Checkbox(
                               value: scrol,
@@ -90,22 +97,11 @@ class _RegisterState extends State<Register> {
                             const Text(
                               "Remember me",
                               style: TextStyle(
-                                fontSize: 17,
+                                fontSize: 15,
                               ),
                             ),
                           ],
                         ),
-                        TextButton(
-                          onPressed: () {
-                            Navigator.of(context).pushNamed('/forgot');
-                          },
-                          child: const Text(
-                            "Forgot password",
-                            style: TextStyle(
-                                // color: Color.fromARGB(255, 6, 71, 124),
-                                fontSize: 17),
-                          ),
-                        )
                       ],
                     ),
                   ),
@@ -116,7 +112,7 @@ class _RegisterState extends State<Register> {
                       press: () {
                         Navigator.of(context).push(
                           MaterialPageRoute(
-                            builder: (context) => Details(),
+                            builder: (context) => const Details(),
                           ),
                         );
                       },
