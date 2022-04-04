@@ -37,7 +37,7 @@ dependencies:
   flutter_native_splash: ^2.1.2+1
   carousel_slider: ^4.0.0
   flutter_svg: ^1.0.3
-  pinput: ^0.2.6
+  pinput: ^0.2.6-nullsafely.0
   badges: ^2.0.2
 
 dev_dependencies:
