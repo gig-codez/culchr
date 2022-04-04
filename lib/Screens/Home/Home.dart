@@ -15,16 +15,16 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
-  late final TabController _tabController;
+  late TabController _tabController;
   int currentTab = 0;
-  tabMaster() {
-    setState(() {});
-  }
 
   @override
   void initState() {
-    _tabController.addListener(tabMaster);
-    _tabController = TabController(length: 4, vsync: this);
+    _tabController = TabController(
+      length: 4,
+      vsync: this,
+      animationDuration: const Duration(milliseconds: 600),
+    );
     super.initState();
   }
 
@@ -76,7 +76,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
           unselectedLabelColor: Colors.black,
           labelStyle: const TextStyle(
             fontWeight: FontWeight.bold,
-            fontSize: 20,
+            fontSize: 21,
           ),
           unselectedLabelStyle: const TextStyle(
             fontWeight: FontWeight.w400,
@@ -117,9 +117,9 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
       floatingActionButtonLocation:
           FloatingActionButtonLocation.miniCenterDocked,
       floatingActionButton: Padding(
-        padding: const EdgeInsets.all(13.0),
+        padding: const EdgeInsets.all(10.0),
         child: Container(
-          padding: const EdgeInsets.all(15),
+          padding: const EdgeInsets.all(10),
           decoration: BoxDecoration(
             color: Colors.black,
             borderRadius: BorderRadius.circular(20),
@@ -128,26 +128,26 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               IconButton(
-                iconSize: 33,
+                iconSize: 26,
                 color: Colors.white,
                 onPressed: () {},
                 icon: const Icon(Icons.home),
               ),
               IconButton(
-                iconSize: 33,
+                iconSize: 26,
                 color: Colors.white,
                 onPressed: () {},
                 icon: const Icon(Icons.search),
               ),
               IconButton(
-                  iconSize: 33,
+                  iconSize: 26,
                   color: Colors.white,
                   onPressed: () {},
                   icon: const Icon(
                     Icons.mark_chat_unread_rounded,
                   )),
               IconButton(
-                iconSize: 33,
+                iconSize: 26,
                 color: Colors.white,
                 onPressed: () {},
                 icon: const Icon(Icons.person),

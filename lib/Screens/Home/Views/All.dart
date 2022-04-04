@@ -50,64 +50,69 @@ class _AllState extends State<All> {
                     child: Text('${events[_currentEvent!.toInt()].title}')),
               ),
             ),
-            Transform.scale(
-              scale: 1.6,
-              alignment: Alignment.bottomCenter,
-              child: PageView.builder(
-                scrollDirection: Axis.vertical,
-                controller: _pageController,
-                itemCount: events.length,
-                itemBuilder: ((context, index) {
-                  if (index == 0) {
-                    const SizedBox.shrink();
-                  }
-                  var result = _currentEvent! - index + 1;
-                  var value = -0.4 * result + 1;
-                  var item = events[index];
-                  return InkWell(
-                    onTap: () {
-                      Navigator.of(context).push(
-                        PageRouteBuilder(
-                          reverseTransitionDuration:
-                              const Duration(milliseconds: 200),
-                          transitionDuration: const Duration(milliseconds: 200),
-                          pageBuilder:
-                              ((context, animation, secondaryAnimation) =>
-                                  FadeTransition(
-                                    opacity: animation,
-                                    child: EventView(
-                                      image: item.image,
-                                      title: item.title,
-                                    ),
-                                  )),
-                        ),
-                      );
-                    },
-                    child: Transform(
-                      alignment: Alignment.topCenter,
-                      transform: Matrix4.identity()
-                        ..setEntry(3, 2, 1)
-                        ..translate(
-                          0.0,
-                          MediaQuery.of(context).size.height /
-                              2.5 *
-                              (1 - value).abs(),
-                        )
-                        ..scale(value),
-                      child: Container(
-                        width: MediaQuery.of(context).size.width,
-                        height: MediaQuery.of(context).size.height,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(13),
-                          image: DecorationImage(
-                            fit: BoxFit.cover,
-                            image: AssetImage(item.image),
+            Padding(
+              padding: const EdgeInsets.all(18.0),
+              child: Transform.scale(
+                scale: 1.6,
+                alignment: Alignment.bottomCenter,
+                child: PageView.builder(
+                  scrollDirection: Axis.vertical,
+                  controller: _pageController,
+                  itemCount: events.length,
+                  itemBuilder: ((context, index) {
+                    if (index == 0) {
+                      const SizedBox.shrink();
+                    }
+                    var result = _currentEvent! - index + 1;
+                    var value = -0.4 * result + 1;
+                    var item = events[index];
+                    return InkWell(
+                      onTap: () {
+                        Navigator.of(context).push(
+                          PageRouteBuilder(
+                            reverseTransitionDuration:
+                                const Duration(milliseconds: 200),
+                            transitionDuration:
+                                const Duration(milliseconds: 200),
+                            pageBuilder:
+                                ((context, animation, secondaryAnimation) =>
+                                    FadeTransition(
+                                      opacity: animation,
+                                      child: EventView(
+                                        image: item.image,
+                                        title: item.title,
+                                      ),
+                                    )),
+                          ),
+                        );
+                      },
+                      child: Transform(
+                        alignment: Alignment.topCenter,
+                        transform: Matrix4.identity()
+                          ..setEntry(3, 2, 0.002)
+                          // ..rotateX(value)
+                          ..translate(
+                            0.0,
+                            MediaQuery.of(context).size.height /
+                                2.8 *
+                                (1 - value).abs(),
+                          )
+                          ..scale(value),
+                        child: Container(
+                          width: MediaQuery.of(context).size.width,
+                          height: MediaQuery.of(context).size.height,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(13),
+                            image: DecorationImage(
+                              fit: BoxFit.cover,
+                              image: AssetImage(item.image),
+                            ),
                           ),
                         ),
                       ),
-                    ),
-                  );
-                }),
+                    );
+                  }),
+                ),
               ),
             ),
           ],
