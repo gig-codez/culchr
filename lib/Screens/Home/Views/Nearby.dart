@@ -2,6 +2,7 @@ import 'package:culchr/Screens/Home/Views/Models/Events.dart';
 import 'package:flutter/material.dart';
 
 import '../Events/EventView.dart';
+import 'Models/Tickets.dart';
 
 class Nearby extends StatefulWidget {
   Nearby({Key? key}) : super(key: key);
@@ -84,6 +85,7 @@ class _NearbyState extends State<Nearby> {
                                         child: EventView(
                                           image: item.image,
                                           title: item.title,
+                                          tickets: tickets,
                                         ),
                                       )),
                             ),

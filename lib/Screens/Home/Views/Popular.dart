@@ -1,4 +1,5 @@
 import 'package:culchr/Screens/Home/Views/Models/Events.dart';
+import 'package:culchr/Screens/Home/Views/Models/Tickets.dart';
 import 'package:flutter/material.dart';
 
 import '../Events/EventView.dart';
@@ -82,6 +83,7 @@ class _PopularState extends State<Popular> {
                                       child: EventView(
                                         image: item.image,
                                         title: item.title,
+                                        tickets: tickets,
                                       ),
                                     )),
                           ),

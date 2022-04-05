@@ -9,6 +9,8 @@ class Intro extends StatefulWidget {
 }
 
 class _IntroState extends State<Intro> {
+  int _current = 0;
+  var _controller = CarouselController();
   @override
   Widget build(BuildContext context) {
     var swipes = [
@@ -43,8 +45,7 @@ class _IntroState extends State<Intro> {
             'Updated catalog of concerts, live perfomances taking place in your locality.'
       }
     ];
-    int _current = 0;
-    var _controller = CarouselController();
+
     return Scaffold(
       backgroundColor: Colors.transparent,
       body: Stack(
@@ -66,7 +67,7 @@ class _IntroState extends State<Intro> {
               onPageChanged: (index, _) {
                 setState(() {
                   _current = index;
-                  print(index);
+                  // print(index);
                 });
               },
               scrollDirection: Axis.horizontal,
@@ -147,6 +148,8 @@ class _IntroState extends State<Intro> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: List.generate(swipes.length, (index) {
+                    print(_current);
+
                     return GestureDetector(
                       onTap: () => _controller.animateToPage(index),
                       child: Container(

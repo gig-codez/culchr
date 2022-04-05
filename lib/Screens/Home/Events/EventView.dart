@@ -1,14 +1,14 @@
-import 'dart:ui';
-
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
-import '../Home.dart';
 
 class EventView extends StatefulWidget {
   final String image;
   final String title;
-  const EventView({Key? key, required this.image, required this.title})
+  final List tickets;
+  const EventView(
+      {Key? key,
+      required this.image,
+      required this.title,
+      required this.tickets})
       : super(key: key);
 
   @override
@@ -206,20 +206,110 @@ class _EventViewState extends State<EventView>
   }
 
   showEventDetails() {
-    _scaffoldKey.currentState?.showBottomSheet(
-      (context) => Container(
-        height: MediaQuery.of(context).size.height / 2.18,
-        decoration: const BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(25),
-              topRight: Radius.circular(25),
-            )),
-        child: const Center(
-          child: Text("Choose event here"),
+    showModalBottomSheet(
+      backgroundColor: Colors.transparent,
+      context: context,
+      builder: (context) => Scaffold(
+        backgroundColor: Colors.transparent,
+        body: Container(
+          padding: EdgeInsets.all(10),
+          height: MediaQuery.of(context).size.height,
+          decoration: const BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(25),
+                topRight: Radius.circular(25),
+              )),
+          child: Padding(
+            padding: const EdgeInsets.all(18.0),
+            child: Center(
+              child: ListView(
+                children: [
+                  SizedBox(
+                    height: MediaQuery.of(context).size.height / 2,
+                    child: GridView.count(
+                      mainAxisSpacing: 2,
+                      crossAxisSpacing: 2,
+                      crossAxisCount: 2, // 3 columns
+                      children: List.generate(
+                        widget.tickets.length,
+                        (index) {
+                          return Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Container(
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                              child: Card(
+                                elevation: 4,
+                                child: Column(
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: Text(
+                                        widget.tickets[index].name,
+                                        style: const TextStyle(
+                                          fontSize: 17,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: Text(
+                                        widget.tickets[index].price.toString() +
+                                            "UGX",
+                                        style: const TextStyle(
+                                          fontSize: 17,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ),
+                                    Center(
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: Text(
+                                          '${widget.tickets[index].description}',
+                                          style: const TextStyle(
+                                            fontSize: 15,
+                                            fontWeight: FontWeight.w300,
+                                          ),
+                                          textAlign: TextAlign.center,
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          );
+                        },
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ),
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+        floatingActionButton: ClipRRect(
+          borderRadius: BorderRadius.circular(10),
+          child: ElevatedButton(
+            style: ElevatedButton.styleFrom(
+              fixedSize: Size(200, 50),
+              primary: Colors.black,
+            ),
+            onPressed: () {},
+            child: const Text(
+              "Continue",
+              style: TextStyle(
+                fontSize: 17,
+              ),
+            ),
+          ),
         ),
       ),
-      backgroundColor: Colors.transparent,
     );
   }
 
