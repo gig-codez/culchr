@@ -1,3 +1,4 @@
+import 'package:culchr/Screens/Home/Views/Models/Payment.dart';
 import 'package:flutter/material.dart';
 
 class EventView extends StatefulWidget {
@@ -19,6 +20,8 @@ class _EventViewState extends State<EventView>
     with SingleTickerProviderStateMixin {
   final _scaffoldKey = GlobalKey<ScaffoldState>();
   late AnimationController _bottomController;
+  bool _isExpanded = false;
+
   @override
   void initState() {
     _bottomController = AnimationController(
@@ -26,6 +29,7 @@ class _EventViewState extends State<EventView>
       duration: const Duration(milliseconds: 600),
       animationBehavior: AnimationBehavior.preserve,
     );
+
     super.initState();
   }
 
@@ -212,7 +216,7 @@ class _EventViewState extends State<EventView>
       builder: (context) => Scaffold(
         backgroundColor: Colors.transparent,
         body: Container(
-          padding: EdgeInsets.all(10),
+          padding: const EdgeInsets.all(10),
           height: MediaQuery.of(context).size.height,
           decoration: const BoxDecoration(
               color: Colors.white,
@@ -221,10 +225,11 @@ class _EventViewState extends State<EventView>
                 topRight: Radius.circular(25),
               )),
           child: Padding(
-            padding: const EdgeInsets.all(18.0),
+            padding: const EdgeInsets.all(10.0),
             child: Center(
               child: ListView(
                 children: [
+                  SizedBox(height: MediaQuery.of(context).size.height * 0.01),
                   SizedBox(
                     height: MediaQuery.of(context).size.height / 2,
                     child: GridView.count(
@@ -297,12 +302,90 @@ class _EventViewState extends State<EventView>
           borderRadius: BorderRadius.circular(10),
           child: ElevatedButton(
             style: ElevatedButton.styleFrom(
-              fixedSize: Size(200, 50),
+              fixedSize: const Size(200, 50),
+              primary: Colors.black,
+            ),
+            onPressed: () {
+              showPaymentOptions();
+            },
+            child: const Text(
+              "Continue",
+              style: TextStyle(
+                fontSize: 17,
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  //  method to show modalBottomSheet for payment options
+  showPaymentOptions() {
+    showModalBottomSheet(
+      backgroundColor: Colors.transparent,
+      context: context,
+      builder: (context) => Scaffold(
+        backgroundColor: Colors.transparent,
+        body: Container(
+          padding: const EdgeInsets.all(10),
+          height: MediaQuery.of(context).size.height,
+          decoration: const BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(25),
+                topRight: Radius.circular(25),
+              )),
+          child: Padding(
+            padding: const EdgeInsets.all(10.0),
+            child: Center(
+              child: SizedBox(
+                height: MediaQuery.of(context).size.height / 2,
+                child: GridView.count(
+                  mainAxisSpacing: 2,
+                  crossAxisSpacing: 2,
+                  crossAxisCount: 2, // 3 columns
+                  children: List.generate(py.length, (index) {
+                    return Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        child: Card(
+                          elevation: 4,
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Center(
+                              child: Text(
+                                py[index].name,
+                                style: const TextStyle(
+                                  fontSize: 17,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    );
+                  }),
+                ),
+              ),
+            ),
+          ),
+        ),
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+        floatingActionButton: ClipRRect(
+          borderRadius: BorderRadius.circular(10),
+          child: ElevatedButton(
+            style: ElevatedButton.styleFrom(
+              fixedSize: const Size(200, 50),
               primary: Colors.black,
             ),
             onPressed: () {},
             child: const Text(
-              "Continue",
+              "Make Payment",
               style: TextStyle(
                 fontSize: 17,
               ),
@@ -316,6 +399,7 @@ class _EventViewState extends State<EventView>
   @override
   void dispose() {
     _bottomController.dispose();
+
     _scaffoldKey.currentState?.dispose();
     super.dispose();
   }
