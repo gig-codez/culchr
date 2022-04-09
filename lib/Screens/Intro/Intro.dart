@@ -10,7 +10,7 @@ class Intro extends StatefulWidget {
 
 class _IntroState extends State<Intro> {
   int _current = 0;
-  var _controller = CarouselController();
+  final _controller = CarouselController();
   @override
   Widget build(BuildContext context) {
     var swipes = [
@@ -148,8 +148,6 @@ class _IntroState extends State<Intro> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: List.generate(swipes.length, (index) {
-                    print(_current);
-
                     return GestureDetector(
                       onTap: () => _controller.animateToPage(index),
                       child: Container(

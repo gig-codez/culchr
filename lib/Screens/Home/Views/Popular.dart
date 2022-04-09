@@ -2,6 +2,7 @@ import 'package:culchr/Screens/Home/Views/Models/Events.dart';
 import 'package:culchr/Screens/Home/Views/Models/Tickets.dart';
 import 'package:flutter/material.dart';
 import 'package:swipe_deck/swipe_deck.dart';
+import 'package:tcard/tcard.dart';
 
 import '../Events/EventView.dart';
 
@@ -37,30 +38,76 @@ class _PopularState extends State<Popular> {
     super.dispose();
   }
 
+  final _cardController = TCardController();
   @override
   Widget build(BuildContext context) {
+    var metrics = MediaQuery.of(context).size;
     return Scaffold(
       body: SafeArea(
-        child: SwipeDeck(
-          startIndex: 0,
-          emptyIndicator: Container(
-            child: const Center(
-              child: Text("Nothing Here"),
-            ),
-          ),
-          cardSpreadInDegrees: 7, // Change the Spread of Background Cards
-          onSwipeLeft: () {},
-          onSwipeRight: () {},
-          onChange: (index) {},
-          widgets: List.generate(
+        child: TCard(
+          controller: _cardController,
+          onEnd: () {
+            _cardController.reset();
+          },
+          cards: List.generate(
             pop.length,
             (index) => InkWell(
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(10),
-                child: Image.asset(
-                  pop[index].image,
-                  fit: BoxFit.cover,
-                  width: MediaQuery.of(context).size.width,
+                child: Container(
+                  width: metrics.width,
+                  height: metrics.height / 1.3,
+                  decoration: BoxDecoration(
+                    image: DecorationImage(
+                      image: AssetImage(pop[index].image),
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      gradient: LinearGradient(
+                        begin: Alignment.bottomCenter,
+                        end: Alignment.topCenter,
+                        colors: [
+                          Colors.black.withOpacity(0.6),
+                          Colors.black.withOpacity(0.0),
+                        ],
+                      ),
+                    ),
+                    child: Stack(
+                      children: [
+                        const Positioned(
+                          bottom: 10,
+                          left: 10,
+                          child: Padding(
+                            padding: EdgeInsets.all(10.0),
+                            child: Text(
+                              "Tap for event details..",
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 17,
+                                fontWeight: FontWeight.w400,
+                              ),
+                            ),
+                          ),
+                        ),
+                        Positioned(
+                          bottom: 20,
+                          left: 10,
+                          child: Padding(
+                            padding: const EdgeInsets.all(20.0),
+                            child: Text(
+                              pop[index].title,
+                              style: const TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 24,
+                                  fontWeight: FontWeight.w500),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
                 ),
               ),
               onTap: () {

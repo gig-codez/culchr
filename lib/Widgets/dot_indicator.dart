@@ -12,7 +12,7 @@ class DotIndicator extends Decoration {
 class DotIndicatorPainter extends BoxPainter {
   const DotIndicatorPainter();
 
-  static const radius = 8.0;
+  static const radius = 0.0;
 
   @override
   void paint(Canvas canvas, Offset offset, ImageConfiguration configuration) {
@@ -22,7 +22,7 @@ class DotIndicatorPainter extends BoxPainter {
     final dy = configuration.size!.height + radius / 2;
     final c = offset + Offset(dx, dy);
 
-    final paint = Paint()..color = Colors.orange;
+    final paint = Paint()..color = Colors.white;
 
     canvas.drawCircle(c, radius, paint);
   }

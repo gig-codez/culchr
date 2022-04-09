@@ -30,9 +30,9 @@ class MyApp extends StatelessWidget {
         '/register': (context) => Register(),
         '/forgot': (context) => Forgot(),
         '/login': (context) => const Login(),
-        '/verify': (context) => Verify(),
+        '/verify': (context) => const Verify(),
         '/new password': (context) => const NewPassword(),
-        '/interest': (context) => const Interest(),
+        '/interests': (context) => const Interest(),
         '/home': (context) => const Home(),
       },
     );

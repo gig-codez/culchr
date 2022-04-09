@@ -2,7 +2,7 @@ import 'package:culchr/Screens/Home/Views/All.dart';
 import 'package:culchr/Widgets/dot_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:badges/badges.dart';
-
+import 'package:animated_text/animated_text.dart';
 import 'Views/Nearby.dart';
 import 'Views/Popular.dart';
 import 'Views/Recomended.dart';
@@ -28,26 +28,44 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
     super.initState();
   }
 
+  List<String> titles = ['Culchr', 'Discover'];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: IconButton(
-          color: Colors.black,
-          iconSize: 35,
-          onPressed: () {},
-          icon: const Icon(Icons.menu),
-        ),
+        toolbarHeight: 100,
         backgroundColor: Colors.transparent,
         elevation: 0,
-        title: const Text(
-          'Culchr.',
-          style: TextStyle(
-            color: Colors.black,
-          ),
-          textScaleFactor: 1.5,
-        ),
+        centerTitle: false,
+        // title: AnimatedText(
+        //   speed: const Duration(milliseconds: 1000),
+        //   controller: AnimatedTextController.loop,
+        //   displayTime: const Duration(milliseconds: 1000),
+        //   wordList: titles,
+        //   textStyle: const TextStyle(
+        //       color: Colors.black, fontSize: 20, fontWeight: FontWeight.w700),
+        // ),
         actions: [
+          Align(
+            alignment: Alignment.centerLeft,
+            child: SizedBox(
+              width: 100,
+              height: 20,
+              child: AnimatedText(
+                // onFinished: () {
+                //   print("Changed");
+                // },
+                speed: const Duration(milliseconds: 1000),
+                controller: AnimatedTextController.loop,
+                displayTime: const Duration(milliseconds: 1000),
+                wordList: titles,
+                textStyle: const TextStyle(
+                    color: Colors.black,
+                    fontSize: 25,
+                    fontWeight: FontWeight.w700),
+              ),
+            ),
+          ),
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Badge(
@@ -55,7 +73,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                 "0",
                 style: TextStyle(color: Colors.white),
               ),
-              position: BadgePosition.bottomStart(bottom: 8, start: 8),
+              position: BadgePosition.bottomStart(bottom: 36, start: 20),
               child: IconButton(
                 iconSize: 30,
                 color: Colors.black,
@@ -64,10 +82,19 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
               ),
             ),
           ),
-          const Padding(
-            padding: EdgeInsets.all(8.0),
-            child: CircleAvatar(
-              child: Icon(Icons.person),
+          Badge(
+            shape: BadgeShape.circle,
+            badgeContent: const Text(
+              "live",
+              style: TextStyle(color: Colors.white),
+            ),
+            position: BadgePosition.bottomStart(bottom: 25, start: 15),
+            child: const Padding(
+              padding: EdgeInsets.all(8.0),
+              child: CircleAvatar(
+                backgroundColor: Colors.grey,
+                child: Icon(Icons.person, color: Colors.white),
+              ),
             ),
           ),
         ],
@@ -103,6 +130,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
       body: SafeArea(
         child: Center(
           child: TabBarView(
+            physics: const NeverScrollableScrollPhysics(),
             controller: _tabController,
             children: [
               All(),
@@ -118,35 +146,35 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
       floatingActionButton: Padding(
         padding: const EdgeInsets.all(10.0),
         child: Container(
-          padding: const EdgeInsets.all(10),
+          padding: const EdgeInsets.all(2),
           decoration: BoxDecoration(
-            color: Colors.black,
+            color: Colors.black87,
             borderRadius: BorderRadius.circular(20),
           ),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               IconButton(
-                iconSize: 26,
+                iconSize: 24,
                 color: Colors.white,
                 onPressed: () {},
                 icon: const Icon(Icons.home),
               ),
               IconButton(
-                iconSize: 26,
+                iconSize: 24,
                 color: Colors.white,
                 onPressed: () {},
                 icon: const Icon(Icons.search),
               ),
               IconButton(
-                  iconSize: 26,
+                  iconSize: 24,
                   color: Colors.white,
                   onPressed: () {},
                   icon: const Icon(
                     Icons.mark_chat_unread_rounded,
                   )),
               IconButton(
-                iconSize: 26,
+                iconSize: 24,
                 color: Colors.white,
                 onPressed: () {},
                 icon: const Icon(Icons.person),

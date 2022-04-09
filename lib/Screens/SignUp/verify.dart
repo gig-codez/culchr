@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:pinput/pin_put/pin_put.dart';
 
 class Verify extends StatefulWidget {
-  Verify({Key? key}) : super(key: key);
+  const Verify({Key? key}) : super(key: key);
 
   @override
   State<Verify> createState() => _VerifyState();
@@ -14,6 +14,7 @@ class _VerifyState extends State<Verify> {
   final TextEditingController _pinPutController = TextEditingController();
   final FocusNode _pinPutFocusNode = FocusNode();
 
+  // ignore: unused_field
   final bool _isLoading = false;
   late String verifypin;
 
@@ -92,7 +93,11 @@ class _VerifyState extends State<Verify> {
                     height: MediaQuery.of(context).size.height * 0.02,
                   ),
                   RoundedButton(
-                      text: "Verify Now", press: () {}, color: Colors.black)
+                      text: "Verify Now",
+                      press: () {
+                        Navigator.of(context).pushNamed('/interests');
+                      },
+                      color: Colors.black)
                 ],
               ),
             ),

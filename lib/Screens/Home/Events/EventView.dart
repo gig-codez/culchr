@@ -101,96 +101,117 @@ class _EventViewState extends State<EventView>
                     ],
                   ),
                 ),
-                child: Column(
-                  children: [
-                    Align(
-                      alignment: Alignment.centerLeft,
-                      child: Padding(
-                        padding: const EdgeInsets.all(28.0),
-                        child: CircleAvatar(
-                          child: BackButton(
-                            color: Colors.white,
-                            onPressed: () {
-                              _scaffoldKey.currentState?.reassemble();
-                              Navigator.of(context).pushNamed('/home');
-                              setState(() {});
-                              _scaffoldKey.currentState?.reassemble();
-                            },
-                          ),
-                          backgroundColor: Colors.orange,
-                        ),
-                      ),
-                    ),
-                    SizedBox(height: MediaQuery.of(context).size.height * 0.35),
-                    Text(
-                      widget.title,
-                      textDirection: TextDirection.ltr,
-                      textAlign: TextAlign.left,
-                      style: const TextStyle(
-                        color: Colors.white,
-                        fontSize: 30,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    SizedBox(height: MediaQuery.of(context).size.height * 0.03),
-                    const Text(
-                      '3rd September 2022',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 17,
-                        fontWeight: FontWeight.w300,
-                      ),
-                    ),
-                    SizedBox(height: MediaQuery.of(context).size.height * 0.01),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: const [
-                        Padding(
-                          padding: EdgeInsets.all(8.0),
-                          child: Icon(
-                            Icons.location_on,
-                            color: Colors.white,
-                          ),
-                        ),
-                        Text(
-                          'Jinja, Uganda',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 17,
-                            fontWeight: FontWeight.w300,
-                          ),
-                        ),
-                      ],
-                    ),
-                    SizedBox(height: MediaQuery.of(context).size.height * 0.01),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: const [
-                        Padding(
-                          padding: EdgeInsets.all(5.0),
-                          child: Text(
-                            'TALENT AFRICA',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 17,
-                              fontWeight: FontWeight.w300,
+                child: TweenAnimationBuilder<double>(
+                    tween: Tween<double>(begin: 0, end: 1),
+                    duration: const Duration(milliseconds: 600),
+                    curve: Curves.easeInOut,
+                    builder: (context, value, child) {
+                      return AnimatedContainer(
+                        width: MediaQuery.of(context).size.width * value,
+                        height: MediaQuery.of(context).size.height * value,
+                        duration: const Duration(milliseconds: 1500),
+                        child: Column(
+                          children: [
+                            Align(
+                              alignment: Alignment.centerLeft,
+                              child: Padding(
+                                padding: const EdgeInsets.all(28.0),
+                                child: CircleAvatar(
+                                  child: BackButton(
+                                    color: Colors.white,
+                                    onPressed: () {
+                                      _scaffoldKey.currentState?.reassemble();
+                                      Navigator.of(context).pushNamed('/home');
+                                      setState(() {});
+                                      _scaffoldKey.currentState?.reassemble();
+                                    },
+                                  ),
+                                  backgroundColor: Colors.orange,
+                                ),
+                              ),
                             ),
-                          ),
+                            SizedBox(
+                                height:
+                                    MediaQuery.of(context).size.height * 0.35),
+                            Text(
+                              widget.title,
+                              textDirection: TextDirection.ltr,
+                              textAlign: TextAlign.left,
+                              style: const TextStyle(
+                                color: Colors.white,
+                                fontSize: 30,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            SizedBox(
+                                height:
+                                    MediaQuery.of(context).size.height * 0.03),
+                            const Text(
+                              '3rd September 2022',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 17,
+                                fontWeight: FontWeight.w300,
+                              ),
+                            ),
+                            SizedBox(
+                                height:
+                                    MediaQuery.of(context).size.height * 0.01),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: const [
+                                Padding(
+                                  padding: EdgeInsets.all(8.0),
+                                  child: Icon(
+                                    Icons.location_on,
+                                    color: Colors.white,
+                                  ),
+                                ),
+                                Text(
+                                  'Jinja, Uganda',
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 17,
+                                    fontWeight: FontWeight.w300,
+                                  ),
+                                ),
+                              ],
+                            ),
+                            SizedBox(
+                                height:
+                                    MediaQuery.of(context).size.height * 0.01),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: const [
+                                Padding(
+                                  padding: EdgeInsets.all(5.0),
+                                  child: Text(
+                                    'TALENT AFRICA',
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 17,
+                                      fontWeight: FontWeight.w300,
+                                    ),
+                                  ),
+                                ),
+                                Icon(Icons.star, color: Colors.white)
+                              ],
+                            ),
+                            SizedBox(
+                                height:
+                                    MediaQuery.of(context).size.height * 0.04),
+                            const Text(
+                              "Swipe up for event details",
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 14,
+                                fontWeight: FontWeight.w400,
+                              ),
+                            )
+                          ],
                         ),
-                        Icon(Icons.star, color: Colors.white)
-                      ],
-                    ),
-                    SizedBox(height: MediaQuery.of(context).size.height * 0.04),
-                    const Text(
-                      "Swipe up for event details",
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 14,
-                        fontWeight: FontWeight.w400,
-                      ),
-                    )
-                  ],
-                ),
+                      );
+                    }),
               ),
             ),
           ),
@@ -322,6 +343,7 @@ class _EventViewState extends State<EventView>
 
   //  method to show modalBottomSheet for payment options
   showPaymentOptions() {
+    Navigator.of(context).pop();
     showModalBottomSheet(
       backgroundColor: Colors.transparent,
       context: context,
