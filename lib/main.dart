@@ -3,6 +3,8 @@ import 'package:culchr/Screens/Forgot/new_password.dart';
 import 'package:culchr/Screens/Intro/Intro.dart';
 import 'package:culchr/Screens/SignUp/verify.dart';
 import 'package:culchr/Screens/login/login.dart';
+import 'package:culchr/Screens/profile/profile.dart';
+import 'package:culchr/index.dart';
 import 'package:flutter/material.dart';
 
 import 'Screens/Home/Home.dart';
@@ -20,13 +22,14 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Culchr',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
       initialRoute: '/',
       routes: {
         '/': (context) => const Intro(),
+        '/index': (context) => Index(),
         '/register': (context) => Register(),
         '/forgot': (context) => Forgot(),
         '/login': (context) => const Login(),
@@ -34,6 +37,7 @@ class MyApp extends StatelessWidget {
         '/new password': (context) => const NewPassword(),
         '/interests': (context) => const Interest(),
         '/home': (context) => const Home(),
+        '/profile': (context) => Profile(),
       },
     );
   }

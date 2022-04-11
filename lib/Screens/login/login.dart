@@ -100,7 +100,7 @@ class _LoginState extends State<Login> {
                     child: RoundedButton(
                       text: "Login",
                       press: () {
-                        Navigator.of(context).pushNamed('/home');
+                        Navigator.of(context).pushNamed('/index');
                       },
                       color: scrol == true ? Colors.black : Colors.black54,
                     ),

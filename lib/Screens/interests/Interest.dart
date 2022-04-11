@@ -75,7 +75,7 @@ class _InterestState extends State<Interest> {
           ),
         ),
         onPressed: () {
-          Navigator.of(context).pushNamed('/home');
+          Navigator.of(context).pushNamed('/index');
         },
         child: const Text(
           "Finish",

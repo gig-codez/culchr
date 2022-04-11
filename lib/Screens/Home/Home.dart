@@ -141,48 +141,6 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
           ),
         ),
       ),
-      floatingActionButtonLocation:
-          FloatingActionButtonLocation.miniCenterDocked,
-      floatingActionButton: Padding(
-        padding: const EdgeInsets.all(10.0),
-        child: Container(
-          padding: const EdgeInsets.all(2),
-          decoration: BoxDecoration(
-            color: Colors.black87,
-            borderRadius: BorderRadius.circular(20),
-          ),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              IconButton(
-                iconSize: 24,
-                color: Colors.white,
-                onPressed: () {},
-                icon: const Icon(Icons.home),
-              ),
-              IconButton(
-                iconSize: 24,
-                color: Colors.white,
-                onPressed: () {},
-                icon: const Icon(Icons.search),
-              ),
-              IconButton(
-                  iconSize: 24,
-                  color: Colors.white,
-                  onPressed: () {},
-                  icon: const Icon(
-                    Icons.mark_chat_unread_rounded,
-                  )),
-              IconButton(
-                iconSize: 24,
-                color: Colors.white,
-                onPressed: () {},
-                icon: const Icon(Icons.person),
-              ),
-            ],
-          ),
-        ),
-      ),
     );
   }
 
